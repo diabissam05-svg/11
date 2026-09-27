@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f3f6f2;
+  --surface: #ffffff;
+  --surface-2: #eef2ed;
+  --line: #dfe6de;
+  --ink: #0f172a;
+  --muted: #57625a;
+  --brand: #3fae24;
+  --brand-strong: #2f8a1a;
+  --brand-soft: rgba(63, 174, 36, 0.12);
+  --onyx: #0b1120;
+}
+
+.dark {
+  --bg: #0b1120;
+  --bg-alt: #0f172a;
+  --surface: #121b30;
+  --surface-2: #1a2540;
+  --line: #22304f;
+  --ink: #ffffff;
+  --muted: #9aa8bf;
+  --brand: #4cc62a;
+  --brand-strong: #66e642;
+  --brand-soft: rgba(76, 198, 42, 0.14);
+  --onyx: #060a14;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-onyx: var(--onyx);
+  --font-display: "Barlow Condensed", "Cairo", ui-sans-serif, sans-serif;
+  --font-body: "Barlow", "Cairo", ui-sans-serif, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="ar"] body {
+  font-family: "Cairo", "Barlow", sans-serif;
+}
+
+html[lang="ar"] .font-display {
+  font-family: "Cairo", "Barlow Condensed", sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* A white logo canvas becomes transparent against dark chrome; dark strokes
+   become light, while genuine transparent PNGs retain their transparency. */
+.dark .logo-theme-aware,
+.logo-on-dark {
+  filter: grayscale(1) invert(1);
+  mix-blend-mode: screen;
+}
+
+::selection {
+  background: var(--brand);
+  color: #06120a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 6px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--brand);
+  color: transparent;
+}
